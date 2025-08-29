@@ -1,1 +1,7 @@
-@import url('./App.css');
+@import url('App.css');
+@import url('todo.css');
+
+.material-symbols-outlined:hover {
+  cursor: pointer;
+  font-variation-settings: 'FILL' 1;
+}

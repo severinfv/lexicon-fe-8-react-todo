@@ -1,0 +1,11 @@
+.todo {
+  display: flex;
+  align-items: center;
+}
+
+.todo:first-child .move-up,
+.todo:last-child .move-down {
+  cursor: not-allowed;
+  color: lightgray;
+  font-variation-settings: 'FILL' 0;
+}
