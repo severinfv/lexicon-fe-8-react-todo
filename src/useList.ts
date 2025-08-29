@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Direction } from './types';
+import type { Direction, ITodo, Sorting } from './types';
 
 type UseListReturn<T> = {
   list: T[];
@@ -7,10 +7,11 @@ type UseListReturn<T> = {
     add: (listItem: T) => void;
     remove: (listItem: T) => void;
     move: (listItem: T, direction: Direction) => void;
+    sort: (field: Sorting) => void;
   };
 };
 
-export const useList = <T>(key: string, initial: T[]): UseListReturn<T> => {
+export const useList = <T extends ITodo>(key: string, initial: T[]): UseListReturn<T> => {
   const [list, setList] = useState<T[]>(() => {
     const stored = localStorage.getItem(key);
     return stored ? (JSON.parse(stored) as T[]) : initial;
@@ -34,9 +35,23 @@ export const useList = <T>(key: string, initial: T[]): UseListReturn<T> => {
     setList(updatedList);
   };
 
+  const sort = (field: Sorting) => {
+  const sortedList = [...list];
+
+  sortedList.sort((a, b) => {
+    if (typeof a[field] === "number" && typeof b[field] === "number") {
+      return a[field] - b[field];
+    }
+
+    return (a[field] as string).localeCompare(b[field] as string);
+  });
+
+  setList(sortedList);
+};
+
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(list));
   }, [list]);
 
-  return { list, actions: { add, remove, move } };
+  return { list, actions: { add, remove, move, sort} };
 };
