@@ -1,4 +1,4 @@
-.todo {
+.todoContent {
   display: flex;
   align-items: center;
 }
@@ -8,4 +8,14 @@
   cursor: not-allowed;
   color: lightgray;
   font-variation-settings: 'FILL' 0;
+}
+
+.todoItem, .menu, .time-span{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.overdue {
+  color: red;
 }

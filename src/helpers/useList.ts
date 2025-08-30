@@ -41,9 +41,14 @@ export const useList = <T extends ITodo>(key: string, initial: T[]): UseListRetu
   setList(sortedList);
 };
 
+
+const update = (listItem: T) => {
+  setList(list.map(t => t.id === listItem.id ? listItem : t));
+};
+
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(list));
   }, [list]);
 
-  return { list, actions: { add, remove, move, sort} };
+  return { list, actions: { add, remove, move, sort, update} };
 };

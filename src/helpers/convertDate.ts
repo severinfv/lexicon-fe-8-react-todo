@@ -1,4 +1,4 @@
-export function formatTodoDate(timestamp: number): string {
+export function formatDate(timestamp: number): string {
   const date = new Date(timestamp);
   const now = new Date();
 

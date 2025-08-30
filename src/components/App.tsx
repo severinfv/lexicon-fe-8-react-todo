@@ -1,25 +1,16 @@
-import {
-  useEffect,
-} from "react";
 import { useList } from "../helpers/useList";
 import type { ITodo } from "../types";
-import { NewTodoForm } from "./addtodo";
-import { SortTodosBtns } from "./sorttodos";
-import ToDoList from "./todolist";
+import { ToDoMenu } from "./todo-collection-menu";
+import TodoCollection  from "./todo-collection";
 
 export const App = () => {
   const todos = useList<ITodo>("todos", []);
-  const archive = useList<ITodo>("archive", []);
-
-  useEffect(() => {
-    console.log("App was rendered");
-  });
+  const completed = useList<ITodo>("completed", []);
 
   return (
     <>
-    <NewTodoForm todolist={todos}/>
-    <ToDoList todolist={todos} archive={archive}/>
-    <SortTodosBtns todolist={todos}/>
+    <ToDoMenu todolist={todos}/>
+    <TodoCollection  todolist={todos} completed={completed}/>
     </>
   );
 };
