@@ -9,3 +9,18 @@ export interface ITodo {
   author: string;
   content: string;
 }
+
+export type UseListReturn<T> = {
+  list: T[];
+  actions: {
+    add: (listItem: T) => void;
+    remove: (listItem: T) => void;
+    move: (listItem: T, direction: Direction) => void;
+    sort: (field: Sorting) => void;
+  };
+};
+
+export interface ITakeTodoList {
+  todolist: UseListReturn<ITodo>;
+  archive?: UseListReturn<ITodo>;
+}

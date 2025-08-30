@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import type { Direction, ITodo } from "../types";
+import { formatTodoDate } from "../helpers/converdate";
 
 interface ITodoProps {
   onMove: (todo: ITodo, direction: Direction) => void;
@@ -19,6 +20,10 @@ export const Todo = ({ onMove, onRemove, onArchive, todo }: ITodoProps): ReactEl
       </span>
 
       <p>{todo.content}</p>
+      <p>{todo.author}</p>
+      <p>{formatTodoDate(todo.created)}</p>
+      <p>{formatTodoDate(todo.due)}</p>
+
 
       <span
         className="material-symbols-outlined move-up"

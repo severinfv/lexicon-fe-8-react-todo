@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
-import type { Direction, ITodo, Sorting } from './types';
+import type { Direction, ITodo, Sorting, UseListReturn } from '../types';
 
-type UseListReturn<T> = {
-  list: T[];
-  actions: {
-    add: (listItem: T) => void;
-    remove: (listItem: T) => void;
-    move: (listItem: T, direction: Direction) => void;
-    sort: (field: Sorting) => void;
-  };
-};
+
 
 export const useList = <T extends ITodo>(key: string, initial: T[]): UseListReturn<T> => {
   const [list, setList] = useState<T[]>(() => {
